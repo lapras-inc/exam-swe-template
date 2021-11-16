@@ -1,0 +1,18 @@
+<h3>Sign Up</h3>
+<% if @error %>
+  <div class="row mx-auto">
+    <div class="alert alert-danger" role="alert">
+      <%= @error %>
+    </div>
+  </div>
+<% end %>
+<div class="row mx-auto">
+  <form method="POST" action="/users">
+    username: <input type="text" name="login" value=<%= @user.login %>><br />
+    email: <input type="text" name="email" value=<%= @user.email %>><br />
+    password: <input type="password" name="password" value=<%= @user.password %>><br />
+    <div class="mx-auto">
+      <input type="submit" value="signup" class="btn btn-primary"/>
+    </div>
+  </form>
+</div>

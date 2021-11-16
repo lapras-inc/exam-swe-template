@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <h3>LogIn</h3>
+  {% if error %}
+    <div class="row mx-auto">
+      <div class="alert alert-danger" role="alert">
+        {{ error }}
+      </div>
+    </div>
+  {% endif %}
+  <div class="row mx-auto">
+    <form method="POST" action="/login">
+        username：
+        {{ form.username() }}<br/>
+        password：
+        {{ form.password() }}<br/>
+      <div class="mx-auto">
+        <input type="submit" value="login" class="btn btn-primary"/>
+      </div>
+    </form>
+  </div>
+{% endblock %}

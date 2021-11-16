@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div class="row">
+    <h3 class="col-sm">Cart.</h3>
+    <div class="col-6"></div>
+    {% if cart_data %}
+      <a class="col-sm btn btn-outline-info" href="/checkout">Prceed to checkout</a>
+    {% endif %}
+  </div>
+  {% if cart_data %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th><th> Price(/100g)</th><th>Amount</th><th>Operation</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for cart in cart_data %}
+      <tr>
+        <td><a href="/tea/{{ cart.tea.id }}">{{ cart.tea.name }}</a></td>
+        <td>{{ cart.tea.price }}</td>
+        <td>{{ cart.amount }}</td>
+        <td>
+          <button
+            class="btn btn-danger change-cart"
+            data-tea-id="{{ cart.tea.id }}"
+            data-tea-name="{{ cart.tea.name }}"
+            data-amount="{{ cart.amount }}"
+          >
+            Change Cart
+          </button>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <h3>empty cart.</h3>
+  {% endif %}
+  <div class="modal" tabindex="-1" role="dialog" id="cartModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form action="/change_cart" method="POST">
+          <input type="hidden" value="" name="teaId" id="teaId">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div style="display: flex; width: 100%;">
+              <span style="width: 10rem;">How Many?</span>
+              <select class="form-control" id="teaAmount" name="teaAmount">
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Change Cart</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block extrascript %}
+<script>
+$(window).on('load', function() {
+  $('.change-cart').on('click', function (e) {
+    var target = $(e.currentTarget);
+    var teaName = target.data('tea-name');
+    var teaId = target.data('tea-id');
+    var amount = parseInt(target.data('amount'));
+    $('#teaAmount').children().remove();
+    for(var i = amount / 100; i >= 0 ; i--) {
+      $('#teaAmount').append(
+        $('<option>', {
+          value: i * 100,
+          text: i * 100,
+        })
+      );
+    }
+    $('#cartModal').find('.modal-title').text(`Change Cart (${teaName})`);
+    $('#cartModal').find('#teaId').val(teaId);
+    $('#cartModal').modal('show');
+  });
+});
+</script>
+{% endblock %}

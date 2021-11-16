@@ -1,0 +1,30 @@
+<div class="card-deck mb-3">
+  <% teas.each do |tea| %>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal text-center"><%= tea[:name] %></h4>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled mt-3 mb-4">
+          <li><strong>生産地:</strong> <%= tea[:location] %></li>
+          <li><strong>生産国:</strong> <%= tea[:country] %></li>
+          <li><strong>説明:</strong> <%= tea[:description] %></li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<footer class="my-5 pt-5 text-muted text-center text-small border-top">
+  <ul class="list-inline">
+    <li class="list-inline-item"><a href="/?page=<%= first_page %><%= url_query %>">First Page</a></li>
+    <% if current_page > 1 %>
+    <li class="list-inline-item"><a href="/?page=<%= current_page - 1 %><%= url_query %>"><%= current_page - 1 %></a></li>
+    <% end %>
+    <li class="list-inline-item"><a href="/?page=<%= current_page %><%= url_query %>"><%= current_page %></a></li>
+    <% if current_page != last_page %>
+    <li class="list-inline-item"><a href="/?page=<%= current_page + 1 %><%= url_query %>"><%= current_page + 1 %></a></li>
+    <% end %>
+    <li class="list-inline-item"><a href="/?page=<%= last_page %><%= url_query %>">Last Page</a></li>
+  </ul>
+</footer>

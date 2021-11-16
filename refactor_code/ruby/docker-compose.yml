@@ -1,0 +1,25 @@
+version: '3.0'
+services:
+  app:
+    build:
+      context: ./docker/service
+    command: bundle exec ruby app.rb
+    entrypoint: docker/service/entrypoint.sh
+    working_dir: /app
+    links:
+      - paymentmock:paymentmock
+    volumes:
+      - .:/app
+    ports:
+      - "80:4567"
+
+  paymentmock:
+    build: ../docker/paymentmock
+    command: 'python /app/app.py'
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ../docker/paymentmock/mockserver:/app
+    ports:
+      - "8810:80"
+    restart: always

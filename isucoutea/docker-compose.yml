@@ -1,0 +1,19 @@
+version: '3.0'
+services:
+  app:
+    build:
+      context: .
+    command: /docker/start_app.sh
+    volumes:
+      - storage_app:/var/lib/mysql
+      - ./webapp:/home/scouty/webapp
+    ports:
+      - "80:80"
+
+  storage_app:
+    image: busybox
+    volumes:
+      - /var/lib/mysql
+
+volumes:
+  storage_app:

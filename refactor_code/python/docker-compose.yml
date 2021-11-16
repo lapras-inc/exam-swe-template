@@ -1,0 +1,34 @@
+
+version: '3.0'
+services:
+  app:
+    build:
+      context: ./docker/service
+    command: ./docker/service/start_app.sh
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app/application
+    volumes:
+      - storage_app:/var/lib/data
+      - .:/app
+    ports:
+      - "80:80"
+
+  paymentmock:
+    build: ../docker/paymentmock
+    command: 'python /app/app.py'
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ../docker/paymentmock/mockserver:/app
+    ports:
+      - "8810:80"
+    restart: always
+
+  storage_app:
+    image: busybox
+    volumes:
+      - /var/lib/data
+
+volumes:
+  storage_app:

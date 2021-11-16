@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row">
+  <div class="col-md-12 order-md-1">
+    <h4 class="mb-3">新規茶葉登録</h4>
+    <form class="needs-validation" action="/" method="POST">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="firstName">名前</label>
+          <input type="text" class="form-control" id="name" name="name" value="" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="lastName">生産地</label>
+          <input type="text" class="form-control" id="location" name="location" value="" required>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="username">説明</label>
+        <div class="input-group">
+          <textarea type="text" class="form-control" id="description" name="description" required=""></textarea>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <button class="btn btn-primary btn-lg btn-block" type="submit">登録</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

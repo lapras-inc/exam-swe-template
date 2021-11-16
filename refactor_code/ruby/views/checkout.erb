@@ -1,0 +1,105 @@
+<div class="row">
+  <h3 class="col-sm">CheckOut.</h3>
+</div>
+<% if @cart_data %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th><th> Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_data.each do |cart| %>
+        <tr>
+          <td><a href="/tea/{{ cart.tea.id }}"><%= cart[:tea].name %></a></td>
+          <td><%= cart[:price] %> yen</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <h5>summary</h5>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>total price(without tax)</th>
+        <td><%= @total_price %> yen</td>
+      </tr>
+      <tr>
+        <th>tax</th>
+        <td><%= (@total_price * 0.08).to_i %> yen</td>
+      </tr>
+      <tr>
+        <th>postage</th>
+        <td><%= (@total_amount / 100 * 30).to_i %> yen(<%= @total_amount %>g)</td>
+      </tr>
+      <tr>
+          <th>total price(with tax, postage)</th>
+          <td><%= (@total_price * 1.08 + (@total_amount / 100 * 30)).to_i %> yen</td>
+      </tr>
+    </tbody>
+  </table>
+  <form method="POST" action="/buy">
+    <div class="row">
+      <select id="paymentType" name="paymentType" class="form-control paymentType">
+        <option value="card">card</option>
+        <option value="poyjp">poyjp</option>
+        <option value="bank">bank</option>
+      </select>
+    </div>
+    <div id="paymentInfo" class="row">
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Buy</button>
+  </form>
+<% else %>
+  <h3>empty cart.</h3>
+<% end %>
+<script>
+$(window).on('load', function() {
+  var paymentInfo = $('#paymentInfo');
+  paymentInfo.append($('<input>', {
+        type: "text",
+        name: "paymentInfo1",
+        class: "form-control",
+        placeholder: 'card number',
+        required: true,
+      }));
+  $('.paymentType').on('change', function (e) {
+    var paymentInfo = $('#paymentInfo');
+    paymentInfo.children().remove();
+    var target = $(e.currentTarget);
+    console.log(target);
+    if (target.val() === 'card') {
+      paymentInfo.append($('<input>', {
+        type: "text",
+        name: "paymentInfo1",
+        class: "form-control",
+        placeholder: 'card number',
+        required: true,
+      }));
+    } else if (target.val() === 'poyjp') {
+      paymentInfo.append($('<input>', {
+        type: "text",
+        name: "paymentInfo1",
+        class: "form-control",
+        placeholder: 'account number',
+        required: true,
+      }));
+    } else if (target.val() === 'bank') {
+      paymentInfo.append($('<input>', {
+        type: "text",
+        name: "paymentInfo1",
+        class: "form-control col",
+        placeholder: 'branch number',
+        required: true,
+      }));
+      paymentInfo.append($('<input>', {
+        type: "text",
+        name: "paymentInfo2",
+        class: "form-control col",
+        placeholder: 'account number',
+        required: true,
+      }));
+    }
+  });
+});
+</script>

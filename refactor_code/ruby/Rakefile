@@ -1,0 +1,13 @@
+require 'sinatra/activerecord'
+require 'sinatra/activerecord/rake'
+require 'rake/testtask'
+
+Rake::TestTask.new do |t|
+  t.pattern = "test/*_test.rb"
+end
+
+namespace :db do
+  task :load_config do
+    require './models'
+  end
+end
