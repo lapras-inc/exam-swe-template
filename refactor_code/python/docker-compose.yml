@@ -1,15 +1,12 @@
-
-version: '3.0'
 services:
   app:
     build:
       context: ./docker/service
-    command: ./docker/service/start_app.sh
+    command: poetry run uwsgi /app/application/app.ini
     working_dir: /app
     environment:
       - PYTHONPATH=/app/application
     volumes:
-      - storage_app:/var/lib/data
       - .:/app
     ports:
       - "80:80"
@@ -23,12 +20,3 @@ services:
       - ../docker/paymentmock/mockserver:/app
     ports:
       - "8810:80"
-    restart: always
-
-  storage_app:
-    image: busybox
-    volumes:
-      - /var/lib/data
-
-volumes:
-  storage_app:

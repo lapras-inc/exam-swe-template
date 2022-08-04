@@ -1,9 +1,0 @@
-click==6.7
-Flask==1.0.2
-itsdangerous==0.24
-Jinja2==2.10
-requests==2.19.1
-MarkupSafe==1.0
-mysqlclient==1.3.12
-uWSGI==2.0.17
-Werkzeug==0.14.1

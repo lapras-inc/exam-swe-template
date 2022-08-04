@@ -15,38 +15,29 @@ Webアプリケーションの参考実装として、Python, Ruby, Go での実
 
 ### アプリケーションの起動方法
 
+`isucoutea` ディレクトリ直下で、以下のコマンドを実行してください。
+
 ```
-$ cd exam_SWE/isucoutea
+$ docker-compose build
 $ docker-compose up
-$ docker exec -it isucoutea_app_1 /bin/bash
-```
-
-以下、各言語実装による。
-
-Python実装の場合
-
-```
-$ cd ~/webapp/python
-$ uwsgi app.ini
-```
-
-Ruby実装の場合
-
-```
-$ cd ~/webapp/ruby
-$ puma -C config_puma.rb
-```
-
-Go実装の場合
-
-```
-$ cd ~/webapp/go
-$ go get -t -d -v ./...
-$ go build -o webapp
-$ ./webapp
 ```
 
 アプリケーション起動後、 `http://localhost` にアクセスすることでアプリケーションの動作確認をすることができます。
+
+### 起動するアプリケーションを変更
+
+デフォルトではPython実装が起動されますが、起動する言語をRubyやGoに変更したい場合は、 `docker-compose.yml` ファイルで指定している `ISUCOUTEA_RUN_TYPE` 環境変数を変更してください。
+その他の言語を使用してアプリケーションを実装する場合は、 `docker/start_app.sh` ファイルを修正し、任意のWebサーバを立ち上げる設定を追加してください。
+
+- run_python
+  - Python実装を起動
+- run_ruby
+  - Ruby実装を起動
+- run_go
+  - Go実装を起動
+- run_custom
+  - カスタム実装を起動
+  - 上記以外の言語を選択する場合
 
 ### ベンチマーカーの実行
 
@@ -54,40 +45,43 @@ $ ./webapp
 アプリケーションを起動後、以下のコマンドをコンテナ内で実行します。
 
 ```
-$ docker exec -it isucoutea_app_1 /bin/bash
-$ python benchmark.py
-Timeout:  GET /?page=25&query=平塚市
-Timeout:  GET /?page=858&query=日本
-Timeout:  GET /
-Timeout:  POST /
-…
-Result: 199.96370339393616 sec
+$ docker exec -it isucoutea_benchmark_1 ./benchmark/run_benchmark.sh
+初期化処理を実施します...
+ベンチマークを実行します...
+Request:  GET / 5.133428198000047 sec 
+Request:  GET /?page=80000 4.191627684999958 sec 
+Request:  POST / 4.293627644000026 sec 
+Request:  GET /?page=25&query=平塚市 20.01473274 sec (timeout)
+Request:  GET /?page=858&query=日本 20.021639434999997 sec (timeout)
+Request:  GET / 20.00904635400002 sec (timeout)
+Request:  POST / 20.02240306600015 sec (timeout)
+Request:  GET /?query=ミャメビエコフ茶 20.010157561000142 sec (timeout)
+Request:  GET /?query=存在しないお茶 20.021486522000032 sec (timeout)
+Request:  GET / 20.01382161100014 sec (timeout)
+Result: 153.73479139000005 sec
 ```
 
 benchmark.py はいくつかのエンドポイントにリクエストを投げて、応答時間を総計して出力しています。  
 この時間をできるだけ短縮することがこの課題の目標です。
 ただし、初期実装では文字列検索(`/?query=hoge`)のレスポンス速度が大変遅く、Timeout(>20sec) します。
 
-
 ### 課題の提出方法
 
 コードとあわせて、`exam_SWE/isucoutea/note.md` にあなたの高速化ログを残してください。  
 作業ログは厳密に記録する必要はなく、ある時点で計測を忘れた場合には、結果部分は空白で結構です。
-
 
 ### 注意事項
 
 #### やってはいけないこと
 
 * 茶葉を新規登録したのに一覧画面に表示されない等、本来期待しているアプリケーションの動き通りに動かないこと
-  * ベンチマーカーにはバリデーションの機能が付いていないのでご注意ください。
+  * ベンチマーカーにはバリデーションの機能が付いており、期待するステータスコードやレスポンスが返却されないとエラーとなります
 * `/initialize` の処理内容において、削除せず残してある初期データに対して変更を加えること。
   * 既存テーブルにカラムを追加してそこに独自のデータを入れることは問題ありません。
 * ベンチマーカーがリクエストしているクエリに特化した高速化処理をいれること。
   * 別の文字列を検索クエリにしたときにも同等のパフォーマンスが出ることを保証してください。
 * teas テーブルの情報を **すべて** メモリ上に置くこと。
   * お茶の情報は今後50倍、100倍に増える可能性があるため、(説明文を除いたとしても)tea テーブルのすべてはメモリ上には載らないものとします。
-
 
 #### やって良いこと
 
@@ -96,8 +90,7 @@ benchmark.py はいくつかのエンドポイントにリクエストを投げ�
 * 初期データが入っているテーブルを2つに分割することもOKです。ただし入っているデータの文字列に変更は加えないでください。
 * やってよいか判断がつかない場合には Issue にて起票ください。
 
-
 #### 採点基準
 
 * 高速化した手法毎に加点していく方式です、node.md には実施した内容を丁寧に記述してください。
-* (実装言語にも依りますが)目安としてベンチマーカーの実行時間を初期実装の約200分の1以下にすることを目標として取り組んでください。
+* (実装言語にも依りますが)目安としてベンチマーカーの実行時間を1秒以内にすることを目標として取り組んでください。

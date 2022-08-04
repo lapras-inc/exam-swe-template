@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-pip install -r /app/requirements.txt
+poetry config virtualenvs.create false
+poetry install
 service nginx start
 
+echo "start application."
 exec "$@"
