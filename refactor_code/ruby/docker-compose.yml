@@ -1,4 +1,3 @@
-version: '3.0'
 services:
   app:
     build:
@@ -22,4 +21,3 @@ services:
       - ../docker/paymentmock/mockserver:/app
     ports:
       - "8810:80"
-    restart: always

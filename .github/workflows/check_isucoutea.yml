@@ -1,0 +1,39 @@
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'isucoutea/**'
+
+name: Check isucoutea
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  isucoutea:
+    name: Check isucoutea
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        language:
+          - "python"
+          - "ruby"
+          - "go"
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: docker-compose build
+        working-directory: isucoutea
+
+      - run: ../scripts/start_docker_compose.bash "app_1" "start application"
+        working-directory: isucoutea
+        timeout-minutes: 5
+        env:
+          ISUCOUTEA_RUN_TYPE: run_${{ matrix.language }}
+
+      - run: docker exec -t isucoutea_benchmark_1 ./benchmark/run_benchmark.sh
+        working-directory: isucoutea
+        timeout-minutes: 5

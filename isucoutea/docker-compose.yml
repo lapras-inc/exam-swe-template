@@ -3,17 +3,18 @@ services:
   app:
     build:
       context: .
-    command: /docker/start_app.sh
+    command: /home/scouty/docker/start_app.sh
     volumes:
-      - storage_app:/var/lib/mysql
+      - ./docker:/home/scouty/docker
       - ./webapp:/home/scouty/webapp
+      - ./admin/config/bashrc:/home/scouty/.bashrc
+      - ./admin/config/nginx.conf:/etc/nginx/nginx.conf
+    environment:
+      ISUCOUTEA_RUN_TYPE: "${ISUCOUTEA_RUN_TYPE-run_python}"
     ports:
       - "80:80"
-
-  storage_app:
-    image: busybox
+  benchmark:
+    image: python:3-slim
+    command: tail -f /dev/null
     volumes:
-      - /var/lib/mysql
-
-volumes:
-  storage_app:
+      - ./benchmark:/benchmark

@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "iscoutea"
+version = "0.1.0"
+description = ""
+authors = ["LAPRAS Inc. <dev@lapras.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Flask = "2.2.0"
+uWSGI = "2.0.20"
+mysqlclient = "2.1.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

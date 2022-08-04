@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "refactor_code"
+version = "0.1.0"
+description = ""
+authors = ["LAPRAS Inc. <dev@lapras.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Flask = "^2.2.1"
+Flask-Login = "^0.6.2"
+peewee = "^3.15.1"
+WTForms = "^3.0.1"
+requests = "^2.28.1"
+uWSGI = "^2.0.20"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
