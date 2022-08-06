@@ -46,7 +46,7 @@ function run_ruby() {
   cd ~/webapp/ruby
   bundle install
   echo "$check_message"
-  puma -C config_puma.rb
+  bundle exec puma -C config_puma.rb
 }
 
 function run_go() {
