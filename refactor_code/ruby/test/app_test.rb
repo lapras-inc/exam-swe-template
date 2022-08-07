@@ -1,3 +1,6 @@
+ENV['RACK_ENV'] = 'test'
+ENV["SINATRA_ENV"] = "test"
+
 require './app'
 require './test/test_helper'
 
