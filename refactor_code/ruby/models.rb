@@ -6,7 +6,11 @@ class User < ActiveRecord::Base
   acts_as_authentic do |config|
     config.login_field = :login
     config.require_password_confirmation = false
+    config.crypto_provider = ::Authlogic::CryptoProviders::SCrypt
   end
+
+  validates :email, uniqueness: { case_sensitive: false }
+  validates :login, uniqueness: { case_sensitive: false }
 end
 
 class UserSession < Authlogic::Session::Base
