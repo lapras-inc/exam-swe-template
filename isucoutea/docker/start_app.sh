@@ -53,9 +53,9 @@ function run_go() {
   echo "run go app..."
   cd ~/webapp/go
   go install
-  go build -o webapp
+  go build -o /tmp/webapp
   echo "$check_message"
-  ./webapp
+  /tmp/webapp
 }
 
 function run_custom() {
