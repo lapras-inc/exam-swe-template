@@ -52,7 +52,7 @@ function run_ruby() {
 function run_go() {
   echo "run go app..."
   cd ~/webapp/go
-  go get -t -d -v ./...
+  go install
   go build -o webapp
   echo "$check_message"
   ./webapp
