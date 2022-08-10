@@ -29,8 +29,8 @@ WORKDIR /home/scouty
 # Ruby のインストール
 ENV PATH="/home/scouty/.rbenv/bin:$PATH"
 
-RUN RUBY_VERSION="2.5.1" && \
-    BUNDLER_VERSION="2.1.4" && \
+RUN RUBY_VERSION="3.1.2" && \
+    BUNDLER_VERSION="2.3.19" && \
     wget "https://raw.githubusercontent.com/rbenv/rbenv-installer/main/bin/rbenv-installer" && \
     cat rbenv-installer | bash && \
     rm -f rbenv-installer && \
