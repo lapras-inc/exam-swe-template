@@ -1,6 +1,3 @@
-ENV['RACK_ENV'] = 'test'
-ENV["SINATRA_ENV"] = "test"
-
 require 'minitest/autorun'
 require "rack-minitest/test"
 require 'database_cleaner'

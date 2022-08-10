@@ -8,6 +8,8 @@ gem 'sqlite3'
 gem 'authlogic'
 gem 'activesupport'
 gem 'faraday'
+gem 'puma'
+gem 'scrypt'
 
 group :development do
   gem 'sinatra-contrib'

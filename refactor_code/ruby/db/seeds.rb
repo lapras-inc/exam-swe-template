@@ -1,9 +1,3 @@
-ActiveRecord::Base.connection.execute("DELETE FROM teas")
-ActiveRecord::Base.connection.execute("DELETE FROM carts")
-ActiveRecord::Base.connection.execute("DELETE FROM orders")
-ActiveRecord::Base.connection.execute("DELETE FROM users")
-ActiveRecord::Base.connection.execute("VACUUM")
-
 User.create(login: 'testuser', email: 'testuser@example.com', password: 'testuser')
 for i in 0..20 do
   Tea.create(
