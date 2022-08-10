@@ -2,34 +2,34 @@ GEM
   remote: https://rubygems.org/
   specs:
     erubis (2.7.0)
-    mustermann (1.1.1)
+    mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
-    mysql2 (0.3.18)
-    mysql2-cs-bind (0.0.7)
+    mysql2 (0.5.4)
+    mysql2-cs-bind (0.1.1)
       mysql2
-    nio4r (2.5.2)
-    puma (4.3.1)
+    nio4r (2.5.8)
+    puma (5.6.4)
       nio4r (~> 2.0)
-    rack (2.2.2)
-    rack-protection (2.0.8.1)
+    rack (2.2.4)
+    rack-protection (2.2.2)
       rack
-    ruby2_keywords (0.0.2)
-    sinatra (2.0.8.1)
-      mustermann (~> 1.0)
-      rack (~> 2.0)
-      rack-protection (= 2.0.8.1)
+    ruby2_keywords (0.0.5)
+    sinatra (2.2.2)
+      mustermann (~> 2.0)
+      rack (~> 2.2)
+      rack-protection (= 2.2.2)
       tilt (~> 2.0)
-    tilt (2.0.10)
+    tilt (2.0.11)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   erubis
-  mysql2 (= 0.3.18)
+  mysql2
   mysql2-cs-bind
   puma
   sinatra
 
 BUNDLED WITH
-   2.1.4
+   2.3.19
