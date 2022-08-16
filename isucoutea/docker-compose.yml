@@ -3,7 +3,6 @@ services:
   app:
     build:
       context: .
-    platform: linux/x86_64
     command: /home/scouty/docker/start_app.sh
     volumes:
       - ./docker:/home/scouty/docker
