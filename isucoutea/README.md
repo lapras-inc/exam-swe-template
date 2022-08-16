@@ -25,6 +25,12 @@ $ docker-compose build
 $ docker-compose up
 ```
 
+ただし Go実装 を Apple Silicon(M1 Macなど) で実行する場合は以下のコマンドを実行してください。
+```
+$ docker-compose -f docker-compose.yml -f docker-compose.go.yml build
+$ docker-compose -f docker-compose.yml -f docker-compose.go.yml up
+```
+
 アプリケーション起動後、 `http://localhost` にアクセスすることでアプリケーションの動作確認をすることができます。
 
 ### 起動するアプリケーションを変更
