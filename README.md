@@ -27,7 +27,7 @@ rootディレクトリ直下の各ディレクトリを1問として扱います
 |課題| 概要 |
 |--- | --- |
 |[isucoutea](https://github.com/lapras-inc/exam-swe-template/tree/main/isucoutea)|わざと遅く作られたWebアプリケーションの高速化|
-|[refacter_code](https://github.com/lapras-inc/exam-swe-template/tree/main/refactor_code)|わざと汚く作られたECサイトの保守性向上のためのリファクタリング|
+|[refactor_code](https://github.com/lapras-inc/exam-swe-template/tree/main/refactor_code)|わざと汚く作られたECサイトの保守性向上のためのリファクタリング|
 |[db_design_complicated](https://github.com/lapras-inc/exam-swe-template/tree/main/db_design_complicated)|テキストで書かれたWebサービスの仕様を満たすデータベース設計|
 
 ## 採用ポジション毎に取り組んでいただく課題
