@@ -2,7 +2,8 @@
 
 このリポジトリには、LAPRAS株式会社にソフトウェアエンジニア職として入社を希望する方向けの、スキルチェック課題が格納されています。
 
-弊社の制度や募集中のポジション、チームの様子について気になる方は **[エンジニア採用サイト](https://corp.lapras.com/recruit-engineer/)** をご覧ください！
+公開した意図や出題意図については **[こちらの記事](https://tech-blog.lapras.com/techBlogs/publish_skill_check)** を、弊社の制度や募集中のポジション、チームの様子について気になる方は **[エンジニア採用サイト](https://corp.lapras.com/recruit-engineer/)** をご覧ください！
+
 
 # 用途
 
