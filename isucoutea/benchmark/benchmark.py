@@ -14,7 +14,7 @@ QUERIES = [
     {'method': 'GET', 'path': '/', 'asserts': ['新しいお茶', '標茶町', '採れたてだよ。', 'ユミワキャモン茶'], 'not_asserts': ['ヒョシレマペユ茶']},
     {'method': 'POST', 'path': '/', 'data': {'name': '更に新しいお茶', 'location': 'デリー', 'description': '更に採れたてだよ。'}, 'asserts': ['更に新しいお茶', 'デリー', '更に採れたてだよ。', 'メガンヤリバ茶'], 'not_asserts': ['ユミワキャモン茶']},
     {'method': 'GET', 'path': '/?query=ミャメビエコフ茶', 'asserts': ['<h4 class="my-0 font-weight-normal text-center">ミャメビエコフ茶</h4>', '白老町', '日本', '渋みと甘みのバランスを味わってください。'], 'not_asserts': ['インド', '中国']},
-    {'method': 'GET', 'path': '/?query=存在しないお茶', 'asserts': [], 'not_asserts': ['<h4 class="my-0 font-weight-normal text-center">存在しないお茶</h4>', '日本', 'インド', '中国']},
+    {'method': 'GET', 'path': '/?query=存在しないお茶', 'asserts': ['存在しないお茶'], 'not_asserts': ['<h4 class="my-0 font-weight-normal text-center">存在しないお茶</h4>', '日本', 'インド', '中国']},
     {'method': 'GET', 'path': '/', 'asserts': ['更に新しいお茶', 'デリー', '更に採れたてだよ。', 'メガンヤリバ茶'], 'not_asserts': ['ユミワキャモン茶']},
 ]
 
