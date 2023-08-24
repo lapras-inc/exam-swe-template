@@ -22,11 +22,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: docker-compose build
+      - run: docker compose build
         working-directory: refactor_code/${{ matrix.language }}
 
-      - run: ../../scripts/start_docker_compose.bash "app_1" "start application"
+      - run: ../../scripts/start_docker_compose.bash "${{ matrix.language }}-app-1" "start application"
         working-directory: refactor_code/${{ matrix.language }}
 
-      - run: docker exec -t ${{ matrix.language }}_app_1 /app/docker/service/run_test.sh
+      - run: docker exec -t ${{ matrix.language }}-app-1 /app/docker/service/run_test.sh
         working-directory: refactor_code/${{ matrix.language }}

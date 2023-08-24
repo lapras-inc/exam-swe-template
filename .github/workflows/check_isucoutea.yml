@@ -23,15 +23,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: docker-compose build
+      - run: docker compose build
         working-directory: isucoutea
 
-      - run: ../scripts/start_docker_compose.bash "app_1" "start application"
+      - run: ../scripts/start_docker_compose.bash "isucoutea-app-1" "start application"
         working-directory: isucoutea
         timeout-minutes: 5
         env:
           ISUCOUTEA_RUN_TYPE: run_${{ matrix.language }}
 
-      - run: docker exec -t isucoutea_benchmark_1 ./benchmark/run_benchmark.sh
+      - run: docker exec -t isucoutea-benchmark-1 ./benchmark/run_benchmark.sh
         working-directory: isucoutea
         timeout-minutes: 5

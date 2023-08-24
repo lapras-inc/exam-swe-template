@@ -21,14 +21,14 @@ Webアプリケーションの参考実装として、Python, Ruby, Go での実
 `isucoutea` ディレクトリ直下で、以下のコマンドを実行してください。
 
 ```
-$ docker-compose build
-$ docker-compose up
+$ docker compose build
+$ docker compose up
 ```
 
 ただし Go実装 を Apple Silicon(M1 Macなど) で実行する場合は以下のコマンドを実行してください。
 ```
-$ docker-compose -f docker-compose.yml -f docker-compose.go.yml build
-$ docker-compose -f docker-compose.yml -f docker-compose.go.yml up
+$ docker compose -f docker-compose.yml -f docker-compose.go.yml build
+$ docker compose -f docker-compose.yml -f docker-compose.go.yml up
 ```
 
 アプリケーション起動後、 `http://localhost` にアクセスすることでアプリケーションの動作確認をすることができます。
@@ -54,7 +54,7 @@ $ docker-compose -f docker-compose.yml -f docker-compose.go.yml up
 アプリケーションを起動後、以下のコマンドをコンテナ内で実行します。
 
 ```
-$ docker exec -it isucoutea_benchmark_1 ./benchmark/run_benchmark.sh
+$ docker exec -it isucoutea-benchmark-1 ./benchmark/run_benchmark.sh
 初期化処理を実施します...
 ベンチマークを実行します...
 Request:  GET / 5.133428198000047 sec 
