@@ -29,7 +29,7 @@ WORKDIR /home/scouty
 # Ruby のインストール
 ENV PATH="/home/scouty/.rbenv/bin:$PATH"
 
-RUN RUBY_VERSION="3.1.2" && \
+RUN RUBY_VERSION="3.1.4" && \
     BUNDLER_VERSION="2.3.19" && \
     wget "https://raw.githubusercontent.com/rbenv/rbenv-installer/main/bin/rbenv-installer" && \
     cat rbenv-installer | bash && \
@@ -45,7 +45,7 @@ RUN RUBY_VERSION="3.1.2" && \
 ENV PYENV_ROOT="/home/scouty/.pyenv"
 ENV PATH="$PYENV_ROOT/bin:$PATH"
 
-RUN PYTHON_VERSION="3.9.13" && \
+RUN PYTHON_VERSION="3.9.17" && \
     POETRY_VERSION="1.1.6" && \
     git clone "https://github.com/pyenv/pyenv.git" ~/.pyenv && \
     # https://uwsgi-docs.readthedocs.io/en/latest/Install.html
@@ -63,7 +63,7 @@ ENV GOROOT="/usr/local/go"
 ENV PATH="$GOROOT/bin:$PATH"
 ENV GOPATH="$HOME/.local/go"
 
-RUN GO_VERSION="1.18.5" && \
+RUN GO_VERSION="1.21.0" && \
     wget -O go.tgz "https://go.dev/dl/go$GO_VERSION.linux-amd64.tar.gz" && \
     sudo tar -C /usr/local -xzf go.tgz && \
     rm -f go.tgz && \
