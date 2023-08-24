@@ -1,6 +1,9 @@
 on:
   workflow_dispatch:
   pull_request:
+    paths:
+      - "isucoutea/**"
+      - ".github/workflows/check_isucoutea.yml"
 
 name: Check isucoutea
 

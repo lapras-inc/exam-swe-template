@@ -1,6 +1,9 @@
 on:
   workflow_dispatch:
   pull_request:
+    paths:
+      - "refactor_code/**"
+      - ".github/workflows/check_refactor_code.yml"
 
 name: Check refactor_code
 
