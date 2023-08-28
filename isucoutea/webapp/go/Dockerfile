@@ -31,7 +31,7 @@ ENV GOROOT="/usr/local/go"
 ENV PATH="$GOROOT/bin:$PATH"
 ENV GOPATH="$HOME/.local/go"
 
-RUN GO_VERSION="1.18.5" && \
+RUN GO_VERSION="1.21.0" && \
     arch="$(dpkg --print-architecture)" && arch="${arch##*-}" && \
     wget -O go.tgz "https://go.dev/dl/go$GO_VERSION.linux-${arch}.tar.gz" && \
     sudo tar -C /usr/local -xzf go.tgz && \

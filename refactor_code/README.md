@@ -13,20 +13,20 @@
 
 ### 環境説明
 
-本アプリケーションにはPythonとRuby実装があります。いずれかの実装を選択してリファクタリングしてください。選択した環境のディレクトリ内で`docker-compose`にて、必要なコンテナが起動します。
+本アプリケーションにはPythonとRuby実装があります。いずれかの実装を選択してリファクタリングしてください。選択した環境のディレクトリ内で`docker compose`にて、必要なコンテナが起動します。
 
 
 ```
 # Python実装を起動する場合
 $ cd python
-$ docker-compose up
+$ docker compose up
 ```
 
 コンテナは3つです。
 
 
 ```
-$ docker-compose ps
+$ docker compose ps
            Name                          Command               State           Ports
 --------------------------------------------------------------------------------------------
 xxxxxxxxxxxxx_app_1           docker/service/entrypoint. ...   Up       0.0.0.0:80->80/tcp
